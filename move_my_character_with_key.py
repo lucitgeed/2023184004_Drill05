@@ -52,24 +52,29 @@ while running:
 
     clear_canvas()
     tuk.draw(350, 300)
-    horse.clip_draw(frame * 223, 0, 223, 160, x, y, 200, 144)
+    if dir >= 0:
+        horse.clip_draw(frame * 223, 0, 223, 160, x, y, 200, 144)
+    elif dir < 0:
+        horse.clip_composite_draw(frame * 223, 0, 223, 160, 0 ,'h' , x, y, 200, 144)
     update_canvas()
     handle_events()
 
     frame = (frame + 1) % 7
 
-    if x== 710 or x == 90:
-        break
-    elif 90 < x < 710:
+    if 90 <= x <= 710:
         x += dir * 4
-        delay(0.04)
-    if y == 550 or y == 50:
-        break
-    elif 50 < y < 550:
+    elif x < 90:
+        x = 90
+    elif x > 710:
+        x = 710
+
+    if 50 <= y <= 550:
         y += udir * 4
-        delay(0.04)
+    elif y < 50:
+        y = 50
+    elif y > 550:
+        y = 550
 
-
-
+    delay(0.04)
 
 close_canvas()
