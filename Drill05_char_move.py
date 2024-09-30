@@ -35,7 +35,8 @@ dir = 0
 while running:
     clear_canvas()
     tuk.draw(350, 300)
-    horse.clip_draw(frame* 223, 0, 223, 160, x, 90, 200, 144)
+   # horse.clip_draw(frame* 223, 0, 223, 160, x, 90, 200, 144)
+    horse.clip_composite_draw(frame * 223, 0, 223, 160, 0, 'h',x, 90, 200, 144)
     update_canvas()
     handle_events()
 
