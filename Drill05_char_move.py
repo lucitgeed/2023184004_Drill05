@@ -31,13 +31,13 @@ def handle_events():
                 running = False
 
         elif event.type == SDL_KEYUP:
-            if event.key == SDLK_RIGHT and dir == 1:
+            if event.key == SDLK_RIGHT:
                 dir -= 1
-            elif event.key == SDLK_LEFT and dir == -1:
+            elif event.key == SDLK_LEFT:
                 dir += 1
-            elif event.key == SDLK_UP and udir == 1:
+            elif event.key == SDLK_UP:
                 udir -= 1
-            elif event.key == SDLK_DOWN and udir == -1:
+            elif event.key == SDLK_DOWN:
                 udir += 1
 #
 
@@ -58,9 +58,17 @@ while running:
 
     frame = (frame + 1) % 7
 
-  #  x += dir * 4
-    y += udir * 4
-    delay(0.04)
+    if x== 710 or x == 90:
+        break
+    elif 90 < x < 710:
+        x += dir * 4
+        delay(0.04)
+    if y == 550 or y == 50:
+        break
+    elif 50 < y < 550:
+        y += udir * 4
+        delay(0.04)
+
 
 
 
