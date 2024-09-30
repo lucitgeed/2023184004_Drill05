@@ -10,6 +10,8 @@ running = True
 def handle_events():
     global running
     global dir
+    global udir
+
     events = get_events()
 
     for event in events:
@@ -21,33 +23,44 @@ def handle_events():
                 dir += 1
             elif event.key == SDLK_LEFT:
                 dir -= 1
+            elif event.key == SDLK_UP:
+                udir += 1
+            elif event.key == SDLK_DOWN:
+                udir -= 1
             elif event.key == SDLK_ESCAPE:
                 running = False
 
         elif event.type == SDL_KEYUP:
-            if event.key == SDLK_RIGHT:
+            if event.key == SDLK_RIGHT and dir == 1:
                 dir -= 1
-            elif event.key == SDLK_LEFT:
+            elif event.key == SDLK_LEFT and dir == -1:
                 dir += 1
+            elif event.key == SDLK_UP and udir == 1:
+                udir -= 1
+            elif event.key == SDLK_DOWN and udir == -1:
+                udir += 1
 #
 
 
 x = 800 // 2
+y = 600 // 4
 frame = 0
 dir = 0
+udir = 0
 
 while running:
+
     clear_canvas()
     tuk.draw(350, 300)
-    horse.clip_draw(frame* 223, 0, 223, 160, x, 90, 200, 144)
+    horse.clip_draw(frame * 223, 0, 223, 160, x, y, 200, 144)
     update_canvas()
     handle_events()
 
     frame = (frame + 1) % 7
 
-    x += dir * 5
+  #  x += dir * 4
+    y += udir * 4
     delay(0.04)
-
 
 
 
