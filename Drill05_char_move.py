@@ -22,7 +22,7 @@ def handle_events():
             elif event.key == SDLK_ESCAPE:
                 running = False
         elif event.type == SDL_KEYUP:
-            if event.key == SDLK_RIGHT
+            if event.key == SDLK_RIGHT:
                 dir -= 1
             elif event.key == SDLK_LEFT:
                 dir += 1
@@ -31,18 +31,17 @@ def handle_events():
 x = 800 // 2
 frame = 0
 dir = 0
+
 while running:
     clear_canvas()
     tuk.draw(350, 300)
-    horse.clip_draw(frame* 223, 0, 223, 160, x, 90)
+    horse.clip_draw(frame* 223, 0, 223, 160, x, 90, 200, 144)
     update_canvas()
-
     handle_events()
-#    if not running:
-#       break
 
     frame = (frame + 1) % 7
-    delay(0.05)
+    x += dir * 5
+    delay(0.04)
 
 
 close_canvas()
